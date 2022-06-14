@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from time import sleep
 
 import nonebot
 from nonebot.adapters.onebot.v12 import Adapter as ONEBOT_V12Adapter
@@ -22,7 +23,7 @@ driver.register_adapter(ONEBOT_V12Adapter)
 
 nonebot.load_builtin_plugins("echo")
 # nonebot.load_plugin("nonebot_plugin_gocqhttp")
-# sleep(3)
+sleep(3)
 
 # Please DO NOT modify this file unless you know what you are doing!
 # As an alternative, you should use command `nb` or modify `pyproject.toml` to load plugins
