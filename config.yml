@@ -1,0 +1,27 @@
+BotSelfConfig:
+  host: "127.0.0.1"
+  port: 23333
+  debug: false
+  superusers: [ "1303030112" ]
+  nickname: [ "AL-1S", "AL1S", "al-1s", "al1s", "ALICE", "Alice", "alice", "天童爱丽丝", "爱丽丝", "アリス", "天童アリス" ]
+  command_start: [ "", "/" ]
+  command_sep: [ "." ]
+  session_expire_timeout: 60
+  proxy: ""  # 请参考文档
+
+InlineGoCQHTTP:
+  enabled: true
+  accounts: # 可多个账号，具体请参考文档
+    - uin: 2242777106
+      password: ""
+      protocol: 5 # 0:Default, 1:Android Phone, 2:AndroidWatch, 3:MacOS, 4:QiDian, 5:iPad
+
+  download_domain: "github.com"
+  download_version: "v1.0.0-rc1"
+
+SauceNAO:
+  key: ""
+
+Setu:
+  reverse_proxy: true # 请参考文档
+  reverse_proxy_domain: "i.pixiv.re"
