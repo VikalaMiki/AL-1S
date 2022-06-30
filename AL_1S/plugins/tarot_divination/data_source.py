@@ -73,10 +73,10 @@ class Tarot:
         if random.random() < 0.5:
             # 正位
             meaning = card.get("meaning").get("up")
-            msg = MessageSegment.text(f"「{name_cn}正位」「{meaning}」\n")
+            msg = MessageSegment.text(f"「{name_cn}正位」\n「{meaning}」\n")
         else:
             meaning = card.get("meaning").get("down")
-            msg = MessageSegment.text(f"「{name_cn}逆位」「{meaning}」\n")
+            msg = MessageSegment.text(f"「{name_cn}逆位」\n「{meaning}」\n")
             img = img.rotate(180)
 
         buf = BytesIO()

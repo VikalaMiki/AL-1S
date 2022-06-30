@@ -21,7 +21,7 @@ class BotSelfConfig:
     host: IPv4Address = IPv4Address(config.get("host", "127.0.0.1"))
     port: int = int(config.get("port", 8080))
     debug: bool = bool(config.get("debug", False))
-    superusers: set = set(config.get("superusers", ["1234567890"]))
+    superusers: set = set(config.get("superusers", ["1303030112"]))
     nickname: set = set(config.get("nickname", ["AL-1S", "AL1S", "al-1s", "al1s",
                                                 "ALICE", "Alice", "alice",
                                                 "天童爱丽丝", "爱丽丝", "アリス", "天童アリス"]))
@@ -53,6 +53,14 @@ class Setu:
 
     reverse_proxy: bool = bool(config.get("reverse_proxy", False))
     reverse_proxy_domain: str = config.get("reverse_proxy_domain", str())
+
+
+# class BotStatus:
+#     config: dict = config["BotStatus"]
+#
+#     server_status_only_superusers: bool = bool(config.get("server_status_only_superusers", True))
+#     superusers: set = set(config.get("superusers", ["1303030112"]))
+# server_status_template: str = config.get("server_status_template", "")
 
 
 RUNTIME_CONFIG = {

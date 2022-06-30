@@ -15,7 +15,6 @@ InlineGoCQHTTP:
     - uin: 2242777106
       password: ""
       protocol: 5 # 0:Default, 1:Android Phone, 2:AndroidWatch, 3:MacOS, 4:QiDian, 5:iPad
-
   download_domain: "github.com"
   download_version: "v1.0.0-rc1"
 
@@ -25,3 +24,7 @@ SauceNAO:
 Setu:
   reverse_proxy: true # 请参考文档
   reverse_proxy_domain: "i.pixiv.re"
+
+BotStatus:
+  server_status_only_superusers: false
+  superusers: [ "1303030113" ]
