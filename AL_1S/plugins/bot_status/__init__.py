@@ -31,6 +31,8 @@ async def server_status(matcher: Matcher):
         disk_usage=disk_usage(),
         uptime=uptime(),
     )
+
+    await matcher.send(message="啊, 是身体检查吗? 爱丽丝准备好了!")
     await matcher.send(message=message.strip("\n"))
 
 
