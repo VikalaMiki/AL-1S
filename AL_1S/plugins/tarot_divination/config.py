@@ -10,11 +10,11 @@ except ModuleNotFoundError:
     import json
 
 
-class PluginConfig(BaseModel, extra=Extra.ignore):
+class TarotConfig(BaseModel, extra=Extra.ignore):
     tarot_path: Path = Path(__file__).parent / "resource"
-    chain_reply: bool = False
+    chain_reply: bool = True
     nickname: Set[str] = {"Bot"}
 
 
 driver = nonebot.get_driver()
-tarot_config: PluginConfig = PluginConfig.parse_obj(driver.config.dict())
+tarot_config: TarotConfig = TarotConfig.parse_obj(driver.config.dict())

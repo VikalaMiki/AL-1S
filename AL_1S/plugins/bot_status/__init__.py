@@ -7,7 +7,7 @@ from nonebot.matcher import Matcher
 from nonebot.permission import SUPERUSER
 
 from .config import Config
-from .data_source import uptime, cpu_status, disk_usage, memory_status, per_cpu_status
+from .status_data_source import uptime, cpu_status, disk_usage, memory_status, per_cpu_status
 
 global_config = get_driver().config
 status_config = Config(**global_config.dict())

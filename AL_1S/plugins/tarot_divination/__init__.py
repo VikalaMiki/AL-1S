@@ -7,7 +7,7 @@ from nonebot.matcher import Matcher
 from nonebot.permission import SUPERUSER
 
 from .config import tarot_config
-from .data_source import tarot_manager
+from .tarot_data_source import tarot_manager
 
 __tarot_version__ = "v0.3.1"
 __tarot_notes__ = f'''

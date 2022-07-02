@@ -42,17 +42,17 @@ class InlineGoCQHTTP:
     download_version: str = str(config.get("download_version", "v1.0.0-rc1"))
 
 
-class SauceNAO:
-    config: dict = config["SauceNAO"]
-
-    key: str = config.get("key", "")
-
-
-class Setu:
-    config: dict = config["Setu"]
-
-    reverse_proxy: bool = bool(config.get("reverse_proxy", False))
-    reverse_proxy_domain: str = config.get("reverse_proxy_domain", str())
+# class SauceNAO:
+#     config: dict = config["SauceNAO"]
+#
+#     key: str = config.get("key", "")
+#
+#
+# class Setu:
+#     config: dict = config["Setu"]
+#
+#     reverse_proxy: bool = bool(config.get("reverse_proxy", False))
+#     reverse_proxy_domain: str = config.get("reverse_proxy_domain", str())
 
 
 # class BotStatus:
