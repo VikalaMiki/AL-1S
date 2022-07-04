@@ -133,3 +133,6 @@ dmypy.json
 
 # go-cqhttp account data
 /accounts
+
+/data
+/loliconImages
