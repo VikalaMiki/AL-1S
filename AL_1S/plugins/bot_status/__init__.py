@@ -16,7 +16,7 @@ _ev = Environment(autoescape=False, enable_async=True)
 _t = _ev.from_string(status_config.server_status_template)
 
 command = on_command(
-    "状态",
+    "自我检查",
     permission=(status_config.server_status_only_superusers or None) and SUPERUSER,
     priority=10,
 )
