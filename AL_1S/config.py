@@ -31,6 +31,10 @@ class BotSelfConfig:
         seconds=config.get("session_expire_timeout", 60)
     )
     proxy: str = config.get("proxy", None)
+    ex_cookie: str = config.get("ex_cookie", None)
+    search_limit: int = int(config.get("search_limit", 2))
+    risk_control: bool = bool(config.get("risk_control", True))
+    record_priority: int = int(config.get("record_priority", 99))
 
 
 class InlineGoCQHTTP:

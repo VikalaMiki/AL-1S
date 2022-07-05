@@ -8,6 +8,10 @@ BotSelfConfig:
   command_sep: [ "." ]
   session_expire_timeout: 60
   proxy: ""  # 请参考文档
+  ex_cookie: ""
+  search_limit: 1  # 搜索限制 防刷屏
+  risk_control: false  # 风控模式 启动后会使用合并转发 只有gocq有实现
+  record_priority: 99  # 记录上一张图片matcher的优先级，与 上一张 命令有关
 
 InlineGoCQHTTP:
   enabled: true
@@ -24,7 +28,3 @@ SauceNAO:
 Setu:
   reverse_proxy: true # 请参考文档
   reverse_proxy_domain: "i.pixiv.re"
-
-BotStatus:
-  server_status_only_superusers: false
-  superusers: [ "1303030113" ]

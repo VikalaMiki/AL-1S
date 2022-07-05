@@ -12,6 +12,7 @@ from nonebot.rule import to_me
 from nonebot.typing import T_State
 from nonebot.utils import DataclassEncoder
 
+import AL_1S
 from .ascii2d import get_des as get_des_asc
 from .ex import get_des as get_des_ex
 from .iqdb import get_des as get_des_iqdb
@@ -59,12 +60,13 @@ async def handle_first_receive(event: MessageEvent, state: T_State, setu: Messag
         state["setu"] = setu
 
 
-@setu.got("mod", prompt="从哪里查找呢? ex/nao/trace/iqdb/ascii2d")
+# @setu.got("mod", prompt="老师打算从哪里查找呢? ex/nao/trace/iqdb/ascii2d")
+@setu.got("mod", prompt="老师打算从哪里查找呢? iqdb/ascii2d")
 async def get_func():
     pass
 
 
-@setu.got("setu", prompt="图呢？")
+@setu.got("setu", prompt="老师想要搜索哪张图片呢?")
 async def get_setu(bot: Bot,
                    event: MessageEvent,
                    mod: str = ArgPlainText("mod"),
@@ -75,10 +77,12 @@ async def get_setu(bot: Bot,
     """
     try:
         if msg[0].type == "image":
-            await bot.send(event=event, message="正在处理图片")
+            await bot.send(event=event, message="爱丽丝扫描中...")
             url = msg[0].data["url"]  # 图片链接
-            if not getattr(bot.config, "risk_control", None) or isinstance(event, PrivateMessageEvent):  # 安全模式
-                async for msg in limiter(get_des(url, mod), getattr(bot.config, "search_limit", None) or 2):
+            if not getattr(AL_1S.config.BotSelfConfig, "risk_control", None) or isinstance(event,
+                                                                                           PrivateMessageEvent):  # 安全模式
+                async for msg in limiter(get_des(url, mod),
+                                         getattr(AL_1S.config.BotSelfConfig, "search_limit", None) or 1):
                     await bot.send(event=event, message=msg)
             else:
                 msgs: Message = sum(
@@ -101,9 +105,9 @@ async def get_setu(bot: Bot,
                                                  )
 
             # image_data: List[Tuple] = await get_pic_from_url(url)
-            await setu.finish("hso")
+            await setu.finish("邦邦邦邦~")
         else:
-            await setu.reject("这不是图,重来!")
+            await setu.reject("老师, 请不要给爱丽丝奇怪的东西...")
     except (IndexError, ClientError):
         await bot.send(event, traceback.format_exc())
         await setu.finish("参数错误")
