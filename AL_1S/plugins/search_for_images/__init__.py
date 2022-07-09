@@ -61,7 +61,7 @@ async def handle_first_receive(event: MessageEvent, state: T_State, setu: Messag
 
 
 # @setu.got("mod", prompt="老师打算从哪里查找呢? ex/nao/trace/iqdb/ascii2d")
-@setu.got("mod", prompt="老师打算从哪里查找呢? iqdb/ascii2d")
+@setu.got("mod", prompt="老师打算从哪里查找呢? iqdb/ascii2d/ex")
 async def get_func():
     pass
 

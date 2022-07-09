@@ -56,7 +56,7 @@ async def _(bot: Bot, event: Event):
                 tags = re.sub(r'^涩图tag', '', msg).split('和')
                 if len(tags) > 3:
                     UserDao().delete_user_cd(event.get_user_id())
-                    await setu.send('涩图tag最多只能有三个哦', at_sender=True)
+                    await setu.send('爱丽丝觉得tag有三个就可以了', at_sender=True)
                     return
                 else:
                     file_name = await get_url(num=1, tags=tags, online_switch=Config().online_switch, r18=r18)
@@ -64,7 +64,7 @@ async def _(bot: Bot, event: Event):
                         pid = re.sub(r'\D+', '', file_name)
                     if file_name == "":
                         UserDao().delete_user_cd(event.get_user_id())
-                        await setu.send('没有找到相关涩图，请更换tag', at_sender=True)
+                        await setu.send('嗯...这些tag找不到相关的涩图，爱丽丝觉得老师换一下tag会更好喔', at_sender=True)
                         return
             interval = 0 if not hasattr(event, 'group_id') else GroupDao().get_group_interval(event.group_id)
             if Config().online_switch == 1:
@@ -79,11 +79,15 @@ async def _(bot: Bot, event: Event):
         except Exception as e:
             logger.error(f'机器人被风控了{e}')
             UserDao().delete_user_cd(event.get_user_id())
-            await setu.finish(message=Message('机器人被风控了,本次涩图不计入cd'), at_sender=True)
+            await setu.finish(message=Message('呜哇...是沉默异常状态,本次涩图不计入cd'), at_sender=True)
     else:
         hour = int(remain_time / 3600)
         minute = int((remain_time / 60) % 60)
-        await setu.finish(f'要等{hour}小时{minute}分钟才能再要涩图哦', at_sender=True)
+        second = int(remain_time % 60)
+        if minute > 0:
+            await setu.finish(f'爱丽丝的技能还在cd,要等{hour}小时{minute}分钟才能再要涩图哦', at_sender=True)
+        if hour == 0 and minute == 0:
+            await setu.finish(f'爱丽丝的技能还在cd,要等{second}秒才能再要涩图哦', at_sender=True)
 
 
 def img_num_detect(r18: int):
@@ -109,7 +113,7 @@ async def _(bot: Bot, event: Event):
             logger.error(f'下载时出现异常{e}')
             await downLoad.send(str(e), at_sender=True)
     else:
-        await downLoad.send('只有主人才有权限哦', at_sender=True)
+        await downLoad.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 def get_file_num(path):
@@ -133,7 +137,7 @@ async def _(bot: Bot, event: Event):
             UserDao().update_user_cd(user_id, '', cd)
         await user_cd.send(f'设置用户{user_id}的cd成功,cd时间为{cd}s', at_sender=True)
     else:
-        await user_cd.send('只有主人才有权限哦', at_sender=True)
+        await user_cd.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 @group_cd.handle()
@@ -151,7 +155,7 @@ async def _(bot: Bot, event: Event):
 
         await group_cd.send(f'设置群{event.group_id}的cd成功,cd时间为{cd}s', at_sender=True)
     else:
-        await group_cd.send('只有主人才有权限哦', at_sender=True)
+        await group_cd.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 @online_switch.handle()
@@ -166,7 +170,7 @@ async def _(bot: Bot, event: Event):
                 json.dump(configs, f)
                 await online_switch.send(f'{msg}成功')
     else:
-        await online_switch.send('只有主人才有权限哦', at_sender=True)
+        await online_switch.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 @proxy_switch.handle()
@@ -181,7 +185,7 @@ async def _(bot: Bot, event: Event):
                 json.dump(configs, f)
                 await proxy_switch.send(f'{msg}成功')
     else:
-        await proxy_switch.send('只有主人才有权限哦', at_sender=True)
+        await proxy_switch.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 @withdraw_interval.handle()
@@ -196,9 +200,10 @@ async def _(bot: Bot, event: Event):
                 await withdraw_interval.finish("请在群里使用此功能")
             group_id = event.group_id
             GroupDao().set_or_update_group_interval(group_id=group_id, interval=interval)
-            await withdraw_interval.send(f'设置群{group_id}撤回间隔{interval}s成功')
+            await withdraw_interval.send(f'爱丽丝已设定会在{interval}秒之后撤回群{group_id}里放出的涩图')
+            await withdraw_interval.send('前有撤回\n\n接下来, 备份会很有用')
     else:
-        await withdraw_interval.send('只有主人才有权限哦', at_sender=True)
+        await withdraw_interval.send('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
 
 
 @api.handle()
