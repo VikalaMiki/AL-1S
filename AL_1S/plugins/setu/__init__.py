@@ -18,7 +18,7 @@ from .getPic import get_url, down_pic
 from .setu_api import setu_api
 from .withdraw import add_withdraw_job
 
-setu = on_regex("^涩图$|^setu$|^无内鬼$|^色图$|^涩图tag.+$")
+setu = on_regex("^涩图$|^setu$|^无内鬼$|^色图$|^涩图tag.+$|^色图tag.+$")
 downLoad = on_regex(r"^下载涩图[1-9]\d*$|^下载色图[1-9]\d*$")
 user_cd = on_regex(r"^\[CQ:at,qq=[1-9][0-9]{4,10}\] cd\d+$")
 group_cd = on_regex(r"^群cd0$|^群cd[1-9]\d*$")
@@ -221,7 +221,7 @@ async def _(bot: Bot, event: Event):
             ImageDao().set_or_update_api(address)
             await api.send(f"设置api地址{address}成功")
         else:
-            await api.send("只有主人才有权限哦", at_sender=True)
+            await api.send("老师的权限等级不足呢,去拜托一下羽山老师怎么样?", at_sender=True)
 
 
 @r18_switch.handle()
@@ -237,4 +237,4 @@ async def _(bot: Bot, event: Event):
             UserDao().set_or_update_r18(1 if msg == "开启私聊涩涩" else 0)
             await r18_switch.finish(f"{msg}成功")
     else:
-        await r18_switch.finish('只有主人才有权限哦', at_sender=True)
+        await r18_switch.finish('老师的权限等级不足呢,去拜托一下羽山老师怎么样?', at_sender=True)
