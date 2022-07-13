@@ -113,7 +113,7 @@ async def handler(
     await send_msg(bot, event, res, help_msg)
 
 
-on_command("识图", aliases={"以图搜图", "识图"}, block=True, priority=13).append_handler(
+on_command("搜图", aliases={"以图搜图", "识图", "搜图", "出自哪里", "找图"}, block=True, priority=13).append_handler(
     handler, parameterless=[get_img_url()]
 )
 
@@ -121,7 +121,7 @@ on_command("识图", aliases={"以图搜图", "识图"}, block=True, priority=13
 async def send_msg(bot: Bot, event: MessageEvent, msgs: List[Message], help_msg: str):
     msgs = msgs[: hikari_config.hikarisearch_max_results]
     msgs.insert(0, Message(help_msg))
-    result = await send_forward_msg(bot, event, "HikariSearch", bot.self_id, msgs)
+    result = await send_forward_msg(bot, event, "天童アリス", bot.self_id, msgs)
     withdraw_time = hikari_config.hikarisearch_withdraw
     if withdraw_time:
         message_id = result["message_id"]

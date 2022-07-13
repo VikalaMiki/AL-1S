@@ -16,7 +16,6 @@ import AL_1S
 from .ascii2d import get_des as get_des_asc
 from .ex import get_des as get_des_ex
 from .iqdb import get_des as get_des_iqdb
-from .saucenao import get_des as get_des_sau1
 from .trace import get_des as get_des_trace
 from .utils import limiter
 from .yandex import get_des as get_des_yandex
@@ -51,7 +50,8 @@ async def get_des(url: str, mode: str):
             yield msg
 
 
-setu = on_command("搜图", aliases={"search"}, rule=to_me())
+# 该插件暂时废弃
+setu = on_command("--搜图--", aliases={"search"}, rule=to_me())
 
 
 @setu.handle()
@@ -138,7 +138,7 @@ async def handle_pic(event: GroupMessageEvent, state: T_State = State()):
         pass
 
 
-previous = on_command("上一张图是什么", aliases={"上一张", "这是什么"})
+previous = on_command("---上一张图是什么---", aliases={"---上一张---", "---这是什么---"})
 
 
 @previous.handle()

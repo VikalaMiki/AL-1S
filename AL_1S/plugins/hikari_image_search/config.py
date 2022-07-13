@@ -4,7 +4,7 @@ from pydantic import BaseModel, Extra
 
 class Config(BaseModel, extra=Extra.ignore):
     hikarisearch_api: str = "https://hikari.obfs.dev"
-    hikarisearch_max_results: int = 3
+    hikarisearch_max_results: int = 1
     hikarisearch_withdraw: int = 0
 
 
