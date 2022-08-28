@@ -5,7 +5,7 @@ from pydantic import BaseModel, Extra
 class Config(BaseModel, extra=Extra.ignore):
     hikarisearch_api: str = "https://hikari.obfs.dev"
     hikarisearch_max_results: int = 1
-    hikarisearch_withdraw: int = 0
+    hikarisearch_withdraw: int = 30
 
 
 hikari_config = Config.parse_obj(get_driver().config.dict())
