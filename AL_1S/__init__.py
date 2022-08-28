@@ -18,6 +18,7 @@ def init():
     nonebot.init(**RUNTIME_CONFIG)
     driver().register_adapter(Adapter)
     nonebot.load_plugins("AL_1S/plugins")
+    nonebot.load_plugin("nonebot_plugin_moegoe")
     if InlineGoCQHTTP.enabled:
         nonebot.load_plugin("nonebot_plugin_gocqhttp")
     # init_database()
