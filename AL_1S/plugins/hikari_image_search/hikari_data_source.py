@@ -27,7 +27,8 @@ async def search_saucenao(image: bytes) -> List[Message]:
 
 async def search_iqdb(image: bytes) -> List[Message]:
     data = {
-        "services": '["danbooru","konachan","yandere","gelbooru","sankaku_channel","e_shuushuu","zerochan","anime_pictures"]',
+        "services": '["danbooru","konachan","yandere","gelbooru","sankaku_channel","e_shuushuu","zerochan",'
+                    '"anime_pictures"]',
         "discolor": "false",
     }
     result = await post("/api/IqDB", data, image)
