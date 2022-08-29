@@ -33,7 +33,9 @@ class ImageDao:
             ext = data['ext']
             urls = json.dumps(data['urls'])
             upload_date = data['uploadDate']
-            sql = "INSERT OR IGNORE INTO lolicon_images(pid, uid, title, author, r18, width, height, ext, urls, upload_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            sql = "INSERT OR IGNORE INTO lolicon_images" \
+                  "(pid, uid, title, author, r18, width, height, ext, urls, upload_date) " \
+                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             cursor.execute(sql, (pid, uid, title, author, r18, width, height, ext, urls, upload_date))
             tags = data['tags']
             for tag in tags:
