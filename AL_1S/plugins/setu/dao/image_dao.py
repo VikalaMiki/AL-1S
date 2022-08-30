@@ -54,7 +54,7 @@ class ImageDao:
     def get_images_by_tags(self, tags: List[str], r18: bool = False, num: int = 1, **kwargs):
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        sql = "select * from lolicon_images where pid in (select pid from lolicon_tags"
+        sql = "select * from lolicon_images where pid in (select pid from lolicon_tags)"
         sql += f" where tags like '%{tags[0]}%'"
         for tag in tags[1:]:
             sql += f" or tags like '%{tag}%'"

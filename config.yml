@@ -22,9 +22,3 @@ InlineGoCQHTTP:
   download_domain: "github.com"
   download_version: "v1.0.0-rc1"
 
-SauceNAO:
-  key: ""
-
-Setu:
-  reverse_proxy: true # 请参考文档
-  reverse_proxy_domain: "i.pixiv.re"
