@@ -46,25 +46,18 @@ class InlineGoCQHTTP:
     download_version: str = str(config.get("download_version", "v1.0.0-rc1"))
 
 
-# class SauceNAO:
-#     config: dict = config["SauceNAO"]
-#
-#     key: str = config.get("key", "")
-#
-#
-# class Setu:
-#     config: dict = config["Setu"]
-#
-#     reverse_proxy: bool = bool(config.get("reverse_proxy", False))
-#     reverse_proxy_domain: str = config.get("reverse_proxy_domain", str())
+class YgoCard:
+    config: dict = config["YgoCard"]
 
 
-# class BotStatus:
-#     config: dict = config["BotStatus"]
-#
-#     server_status_only_superusers: bool = bool(config.get("server_status_only_superusers", True))
-#     superusers: set = set(config.get("superusers", ["1303030112"]))
-# server_status_template: str = config.get("server_status_template", "")
+class AiDrawer:
+    config: dict = config["AiDrawer"]
+
+    wenxin_ak: str = str(config.get("wenxin_ak", ""))
+    wenxin_sk: str = str(config.get("wenxin_sk", ""))
+    wenxin_cd_time: int = int(config.get("wenxin_cd_time", 60))
+    wenxin_image_count: int = int(config.get("wenxin_image_count", 1))
+    wenxin_manager_list: list = list(config.get("wenxin_manager_list", ["1303030112"]))
 
 
 RUNTIME_CONFIG = {

@@ -22,3 +22,11 @@ InlineGoCQHTTP:
   download_domain: "github.com"
   download_version: "v1.0.0-rc1"
 
+YgoCard:
+
+AiDrawer:
+  wenxin_ak: "G1qqnpiVCq0FgT7lss22duBsoeLsBexX"
+  wenxin_sk: "Uaxz9R90mQfMDBhYQKHGnnS5MmKk6ax7"
+  wenxin_cd_time: 60
+  wenxin_image_count: 3
+  wenxin_manager_list: [ "1303030112" ]
