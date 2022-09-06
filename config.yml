@@ -40,7 +40,7 @@ HikariImageSearch:
   hikari_search_withdraw: 30
 
 TarotDivination:
-  chain_reply: true
+  chain_reply: false
   nickname: [ "AL-1S", "AL1S", "al-1s", "al1s", "ALICE", "Alice", "alice", "天童爱丽丝", "爱丽丝", "アリス", "天童アリス" ]
 
 

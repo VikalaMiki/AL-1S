@@ -4,6 +4,8 @@ from typing import Set
 import nonebot
 from pydantic import BaseModel, Extra
 
+from AL_1S.config import TarotDivination
+
 try:
     import ujson as json
 except ModuleNotFoundError:
@@ -12,8 +14,8 @@ except ModuleNotFoundError:
 
 class TarotConfig(BaseModel, extra=Extra.ignore):
     tarot_path: Path = Path(__file__).parent / "resource"
-    chain_reply: bool = True
-    nickname: Set[str] = {"Bot"}
+    chain_reply: bool = TarotDivination.chain_reply
+    nickname: Set[str] = TarotDivination.nickname
 
 
 driver = nonebot.get_driver()
