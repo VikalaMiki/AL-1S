@@ -31,10 +31,6 @@ class BotSelfConfig:
         seconds=config.get("session_expire_timeout", 60)
     )
     proxy: str = config.get("proxy", None)
-    ex_cookie: str = config.get("ex_cookie", None)
-    search_limit: int = int(config.get("search_limit", 2))
-    risk_control: bool = bool(config.get("risk_control", True))
-    record_priority: int = int(config.get("record_priority", 99))
 
 
 class InlineGoCQHTTP:
@@ -58,6 +54,33 @@ class AiDrawer:
     wenxin_cd_time: int = int(config.get("wenxin_cd_time", 60))
     wenxin_image_count: int = int(config.get("wenxin_image_count", 1))
     wenxin_manager_list: list = list(config.get("wenxin_manager_list", ["1303030112"]))
+
+
+class BotStatus:
+    config: dict = config["BotStatus"]
+
+    server_status_only_superusers: bool = bool(config.get("server_status_only_superusers", True))
+    server_status_cpu: bool = bool(config.get("server_status_cpu", False))
+    server_status_per_cpu: bool = bool(config.get("server_status_per_cpu", False))
+    server_status_memory: bool = bool(config.get("server_status_memory", False))
+    server_status_disk: bool = bool(config.get("server_status_disk", True))
+
+
+class HikariImageSearch:
+    config: dict = config["HikariImageSearch"]
+
+    hikari_search_api: str = str(config.get("hikari_search_api", "https://hikari.obfs.dev"))
+    hikari_search_max_results: int = int(config.get("hikari_search_max_results", 1))
+    hikari_search_withdraw: int = int(config.get("hikari_search_withdraw", 30))
+
+
+class TarotDivination:
+    config: dict = config["TarotDivination"]
+
+    chain_reply: bool = bool(config.get("chain_reply", True))
+    nickname: set = set(config.get("nickname", ["AL-1S", "AL1S", "al-1s", "al1s",
+                                                "ALICE", "Alice", "alice",
+                                                "天童爱丽丝", "爱丽丝", "アリス", "天童アリス"]))
 
 
 RUNTIME_CONFIG = {

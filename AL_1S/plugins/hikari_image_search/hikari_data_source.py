@@ -6,7 +6,7 @@ from nonebot.adapters.onebot.v11 import Message, MessageSegment
 
 from .config import hikari_config
 
-API = hikari_config.hikarisearch_api.strip("/")
+API = hikari_config.hikari_search_api.strip("/")
 
 
 async def search_saucenao(image: bytes) -> List[Message]:

@@ -8,10 +8,6 @@ BotSelfConfig:
   command_sep: [ "." ]
   session_expire_timeout: 60
   proxy: ""  # 请参考文档
-  ex_cookie: ""
-  search_limit: 1  # 搜索限制 防刷屏
-  risk_control: true  # 风控模式 启动后会使用合并转发 只有gocq有实现
-  record_priority: 99  # 记录上一张图片matcher的优先级，与 上一张 命令有关
 
 InlineGoCQHTTP:
   enabled: true
@@ -22,6 +18,13 @@ InlineGoCQHTTP:
   download_domain: "github.com"
   download_version: "v1.0.0-rc1"
 
+BotStatus:
+  server_status_only_superusers: true
+  server_status_cpu: false
+  server_status_per_cpu: false
+  server_status_memory: false
+  server_status_disk: true
+
 YgoCard:
 
 AiDrawer:
@@ -30,3 +33,15 @@ AiDrawer:
   wenxin_cd_time: 60
   wenxin_image_count: 3
   wenxin_manager_list: [ "1303030112" ]
+
+HikariImageSearch:
+  hikari_search_api: "https://hikari.obfs.dev"
+  hikari_search_max_results: 2
+  hikari_search_withdraw: 30
+
+TarotDivination:
+  chain_reply: true
+  nickname: [ "AL-1S", "AL1S", "al-1s", "al1s", "ALICE", "Alice", "alice", "天童爱丽丝", "爱丽丝", "アリス", "天童アリス" ]
+
+
+

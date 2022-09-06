@@ -119,10 +119,10 @@ on_command("搜图", aliases={"以图搜图", "识图", "搜图", "出自哪里"
 
 
 async def send_msg(bot: Bot, event: MessageEvent, msgs: List[Message], help_msg: str):
-    msgs = msgs[: hikari_config.hikarisearch_max_results]
+    msgs = msgs[: hikari_config.hikari_search_max_results]
     msgs.insert(0, Message(help_msg))
     result = await send_forward_msg(bot, event, "天童アリス", bot.self_id, msgs)
-    withdraw_time = hikari_config.hikarisearch_withdraw
+    withdraw_time = hikari_config.hikari_search_withdraw
     if withdraw_time:
         message_id = result["message_id"]
         loop = asyncio.get_running_loop()

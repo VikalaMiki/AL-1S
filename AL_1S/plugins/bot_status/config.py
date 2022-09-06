@@ -4,7 +4,10 @@
 import warnings
 from typing import Any, Dict
 
+import nonebot
 from pydantic import BaseSettings, root_validator
+
+from AL_1S.config import BotStatus
 
 CPU_TEMPLATE = "CPU: {{ '%02d' % cpu_usage }}%"
 PER_CPU_TEMPLATE = (
@@ -24,13 +27,13 @@ UPTIME_TEMPLATE = "Uptime: {{ uptime }}"
 
 
 class Config(BaseSettings):
-    server_status_only_superusers: bool = True
+    server_status_only_superusers: bool = BotStatus.server_status_only_superusers
 
     # Deprecated: legacy settings
-    server_status_cpu: bool = True
-    server_status_per_cpu: bool = False
-    server_status_memory: bool = True
-    server_status_disk: bool = True
+    server_status_cpu: bool = BotStatus.server_status_cpu
+    server_status_per_cpu: bool = BotStatus.server_status_per_cpu
+    server_status_memory: bool = BotStatus.server_status_memory
+    server_status_disk: bool = BotStatus.server_status_disk
 
     # template
     server_status_template: str = "\n".join(
@@ -41,7 +44,7 @@ class Config(BaseSettings):
         extra = "ignore"
 
     @root_validator(pre=True)
-    def transform_legacy_settings(cls, value: Dict[str, Any]) -> Dict[str, Any]:
+    def transform_legacy_settings(self, value: Dict[str, Any]) -> Dict[str, Any]:
         if "server_status_template" not in value and (
                 "server_status_cpu" in value
                 or "server_status_per_cpu" in value
@@ -65,3 +68,6 @@ class Config(BaseSettings):
             value.setdefault("server_status_template", "\n".join(templates))
 
         return value
+
+
+config = Config.parse_obj(nonebot.get_driver().config.dict())  # 载入配置
