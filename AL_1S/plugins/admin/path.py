@@ -1,3 +1,11 @@
+# python3
+# -*- coding: utf-8 -*-
+# @Time     : 2022/9/29
+# @Author   : Vikala_Miki
+# @Email    : Vikala.Miki@gmail.com
+# @Github   : https://github.com/VikalaMiki
+# @File     : path.py
+# @Software : PyCharm
 from pathlib import Path
 
 # FIXME 群配置文件目前都以配置文件的类型分文件夹，而不是以群分文件夹，后者是不是会更好，但是目前懒得改了

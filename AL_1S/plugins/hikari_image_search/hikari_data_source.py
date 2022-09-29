@@ -1,3 +1,11 @@
+# python3
+# -*- coding: utf-8 -*-
+# @Time     : 2022/7/11
+# @Author   : Vikala_Miki
+# @Email    : Vikala.Miki@gmail.com
+# @Github   : https://github.com/VikalaMiki
+# @File     : hikari_data_source.py
+# @Software : PyCharm
 from dataclasses import dataclass
 from typing import List, Tuple, Protocol
 

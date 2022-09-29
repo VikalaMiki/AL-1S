@@ -1,3 +1,11 @@
+# python3
+# -*- coding: utf-8 -*-
+# @Time     : 2022/6/19
+# @Author   : Vikala_Miki
+# @Email    : Vikala.Miki@gmail.com
+# @Github   : https://github.com/VikalaMiki
+# @File     : config.py
+# @Software : PyCharm
 from pathlib import Path
 from typing import Set
 
