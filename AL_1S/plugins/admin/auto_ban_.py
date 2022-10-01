@@ -15,8 +15,8 @@ from nonebot.params import CommandArg
 from nonebot.permission import SUPERUSER
 
 from AL_1S.plugins.admin.config import plugin_config
-from .path import limit_word_path
-from .utils import del_txt_line, add_txt_line, get_txt_line
+from AL_1S.plugins.admin.path import limit_word_path
+from AL_1S.plugins.admin.utils import del_txt_line, add_txt_line, get_txt_line
 
 callback_notice = plugin_config.callback_notice
 
