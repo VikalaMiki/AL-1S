@@ -18,7 +18,12 @@ send_sentence_night = ["句子1", "句子2", "..."]       # 如果是模式1 此
 send_time_moring = "8 0"                            # 选填 早上发送时间默认为7:00
 send_time_night = "23 0"                            # 选填 晚上发送时间默认为22:00
 """
-from nonebot import require, logger, get_driver
+import asyncio
+import json
+import random
+
+import requests
+from nonebot import require, logger, get_driver, get_bot
 
 try:
     scheduler = require('nonebot_plugin_apscheduler').scheduler
@@ -76,7 +81,73 @@ n_hour, n_minute = send_time_night.split(' ')
 
 
 # 随机一言API
+def hitokoto():
+    url = "https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=h"
+    txt = requests.get(url)
+    data = json.loads(txt.text)
+    msg = data['hitokoto']
+    add = ""
+    if works := data['from']:
+        add += f"《{works}》"
+    if from_who := data['from_who']:
+        add += f"{from_who}"
+    if add:
+        msg += f"\n——{add}"
+    return msg
 
 
+async def send_morning():
+    # 如果为False则直接退出函数
+    if not send_switch_morning:
+        logger.info('send_morning(), 关闭, 跳出函数')
+        return
+    send_success = False
+    while not send_success:
+        try:
+            await asyncio.sleep(random.randint(1, 10))
+            # await get_bot().send_private_msg(user_id = fire_user_id, message = "🌞早，又是元气满满的一天")  #
+            # 当未连接到onebot.v11协议端时会抛出异常
+            for gid in send_group_id:
+                if send_mode == 1:
+                    await get_bot().send_group_msg(group_id=gid,
+                                                   message=f"{random.choice(send_sentence_morning)}")
+                if send_mode == 2:
+                    await get_bot().send_group_msg(group_id=gid,
+                                                   message=hitokoto())
+            logger.info('群聊推送消息')
+            send_success = True
+        except ValueError as e:
+            logger.error("ValueError:{}", e)
+            logger.error('群聊推送消息插件获取bot失败, 1s后重试')
+            await asyncio.sleep(1)  # 尝试前时延, 防止阻塞
 
 
+async def send_night():
+    # 如果为False则直接退出函数
+    if not send_switch_night:
+        logger.info('send_night()关闭，跳出函数')
+        return
+    send_success = False
+    while not send_success:
+        try:
+            await asyncio.sleep(random.randint(1, 10))
+            # await get_bot().send_private_msg(user_id = fire_user_id, message = "🌛今天续火花了么，晚安啦")  #
+            # 当未连接到onebot.v11协议端时会抛出异常
+            for gid in send_group_id:
+                if send_mode == 1:
+                    await get_bot().send_group_msg(group_id=gid,
+                                                   message=f"{random.choice(send_sentence_night)}")
+                if send_mode == 2:
+                    await get_bot().send_group_msg(group_id=gid,
+                                                   message=hitokoto())
+            logger.info('群聊推送消息')
+            send_success = True
+        except ValueError as e:
+            logger.error("ValueError:{}", e)
+            logger.error('群聊推送消息插件获取bot失败, 1s后重试')
+            await asyncio.sleep(1)  # 尝试前时延, 防止阻塞
+
+
+if scheduler:
+    scheduler.add_job(send_morning, 'cron', hour=m_hour, minute=m_minute, id='send_morning')  # 早上推送
+    scheduler.add_job(send_night, 'cron', hour=n_hour, minute=n_minute, id='send_night')  # 晚上推送
